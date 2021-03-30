@@ -3,15 +3,19 @@ const githubQuery = {
   {
     viewer {
       name
-      repositories(first: 15, orderBy: {field: CREATED_AT, direction: DESC}) {
-        nodes {
+    }
+    search(query: "user:BalajiJ234 sort:updated-desc", type: REPOSITORY, first: 10) {
+      nodes {
+        ... on Repository {
           name
           description
           id
+          url
         }
       }
     }
   }
+  
     `,
 };
 
