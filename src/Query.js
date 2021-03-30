@@ -12,11 +12,13 @@ const githubQuery = {
           id
           url
           viewerSubscription
+          licenseInfo{
+            spdxId
+          }
         }
       }
     }
   }
-  
     `,
 };
 
