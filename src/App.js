@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import github from "./db";
+import NavButtons from "./NavButtons";
 import query from "./Query";
 import RepoInfo from "./RepoInfo";
 import SearchBox from "./SearchBox";
@@ -70,6 +71,16 @@ const App = () => {
           setPageCount(myNumber);
         }}
       />
+      <NavButtons
+        start={startCursor}
+        end={endCursor}
+        next={hasNextPage}
+        previous={hasPreviousPage}
+        onPage={(myKeyword, myString) => {
+          setPaginationKeyword(myKeyword);
+          setPaginationString(myString);
+        }}
+      />
       {repoList && (
         <ul className="list-group list-group-flush">
           {repoList.map((repo) => (
@@ -77,6 +88,16 @@ const App = () => {
           ))}
         </ul>
       )}
+      <NavButtons
+        start={startCursor}
+        end={endCursor}
+        next={hasNextPage}
+        previous={hasPreviousPage}
+        onPage={(myKeyword, myString) => {
+          setPaginationKeyword(myKeyword);
+          setPaginationString(myString);
+        }}
+      />
     </div>
   );
 };
