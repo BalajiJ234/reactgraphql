@@ -33,7 +33,7 @@ const App = () => {
         const viewer = data.data.viewer;
         const repos = data.data.search.edges;
         const count = data.data.search.repositoryCount;
-        const start = data.data.search.pageInfo?.pageCursor;
+        const start = data.data.search.pageInfo?.startCursor;
         const end = data.data.search.pageInfo?.endCursor;
         const next = data.data.search.pageInfo?.hasNextPage;
         const prev = data.data.search.pageInfo?.hasPreviousPage;
