@@ -3,12 +3,13 @@ import { useEffect, useState, useCallback } from "react";
 import github from "./db";
 import query from "./Query";
 import RepoInfo from "./RepoInfo";
+import SearchBox from "./SearchBox";
 
 const App = () => {
   let [userName, setUserName] = useState("");
   let [repoList, setRepoList] = useState(null);
   let [pageCount, setPageCount] = useState(10);
-  let [queryString, setQueryString] = useState("react");
+  let [queryString, setQueryString] = useState("");
   let [totalCount, setTotalCount] = useState(null);
 
   const fetchData = useCallback(() => {
@@ -41,12 +42,17 @@ const App = () => {
         <i className="bi bi-diagram-2-fill"></i> Repos
       </h1>
       <p>Hey there {userName}</p>
-      <p>
-        <b>Search For:</b>
-        {queryString} | <b>Items per page:</b>
-        {pageCount} |<b>Total repositories:</b>
-        {totalCount}
-      </p>
+      <SearchBox
+        totalCount={totalCount}
+        pageCount={pageCount}
+        queryString={queryString}
+        onQueryChange={(myString) => {
+          setQueryString(myString);
+        }}
+        onTotalChange={(myNumber) => {
+          setPageCount(myNumber);
+        }}
+      />
       {repoList && (
         <ul className="list-group list-group-flush">
           {repoList.map((repo) => (
